@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>খরচের হিসাব</title>
+<style>
+body {font-family: 'Nirmala UI', sans-serif; background:#121212; color:#fff; padding:20px;}
+h2 {text-align:center; color:#4CAF50;}
+input, button {padding:10px; margin:5px; border-radius:8px; border:none;}
+input {width:60%; background:#222; color:#fff;}
+button {background:#4CAF50; color:#fff; cursor:pointer;}
+button:hover {background:#45a049;}
+.item {display:flex; justify-content:space-between; background:#1f1f1f; padding:10px; margin:5px 0; border-radius:8px;}
+.total {font-size:20px; font-weight:bold; text-align:center; margin-top:20px; color:#FFD700;}
+.del {background:red; padding:5px 10px; border-radius:5px;}
+</style>
+</head>
+<body>
+<h2>📒 মাসিক খরচের হিসাব</h2>
+<input id="name" placeholder="আইটেমের নাম">
+<input id="price" type="number" placeholder="দাম">
+<button onclick="addItem()">Add</button>
+<div id="list"></div>
+<div class="total">মোট খরচ: <span id="total">0</span> টাকা</div>
+
+<script>
+let items = JSON.parse(localStorage.getItem("expenses")) || [];
+
+function render() {
+  let list = document.getElementById("list");
+  list.innerHTML = "";
+  let sum = 0;
+  items.forEach((it, i) => {
+    sum += it.price;
+    list.innerHTML += `<div class="item">${it.name} - ${it.price} টাকা <button class="del" onclick="del(${i})">X</button></div>`;
+  });
+  document.getElementById("total").innerText = sum;
+  localStorage.setItem("expenses", JSON.stringify(items));
+}
+
+function addItem() {
+  let name = document.getElementById("name").value;
+  let price = parseFloat(document.getElementById("price").value);
+  if(name && price) {
+    items.push({name, price});
+    document.getElementById("name").value = "";
+    document.getElementById("price").value = "";
+    render();
+  }
+}
+
+function del(i) {
+  items.splice(i,1);
+  render();
+}
+render();
+</script>
+</body>
+</html>
