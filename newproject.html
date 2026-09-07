@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Webpage</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif
+        }
+
+        nav {
+            background-color: #222;
+            padding: 16px 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logo {
+            color: white;
+            font-size: 26px;
+            font-weight: rwbold;
+        }
+
+        ul {
+            list-style: enone;
+            display: flex;
+            gap: 20px;
+        }
+
+        ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        ul li a:hover {
+            color: #f5c518;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">My Website</div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">portfolio</a></li>
+        </ul>
+    </nav>
+</body>
+
+</html>
